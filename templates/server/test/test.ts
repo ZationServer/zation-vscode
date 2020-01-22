@@ -19,7 +19,7 @@ before(async () => {
     await testClient.connect();
 });
 
-describe('LogInController Test',async () => {
+describe('LoginController Test',async () => {
 
     when(testClient,'Test Authenticated')
         .authRequest({email: 'mytest@gmail.de',password: 'secret'})

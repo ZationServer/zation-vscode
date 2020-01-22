@@ -1,7 +1,7 @@
 import {Register, Controller, ControllerConfig, Result, BackError, BackErrorBag, Bag, RequestBag, ObjectModel, Model} from 'zation-server';
 
 @ObjectModel()
-class LogInCredentials {
+class Credentials {
 
     @Model({
         type: 'email',
@@ -17,18 +17,18 @@ class LogInCredentials {
 }
 
 @Register().asAuthController()
-export class LogInController extends Controller {
+export class LoginController extends Controller {
 
     static readonly config: ControllerConfig = {
         access: 'all',
-        input: LogInCredentials
+        input: Credentials
     };
 
     async initialize(bag: Bag) {
 
     }
 
-    async handle(bag: RequestBag,{email,password}: LogInCredentials) {
+    async handle(bag: RequestBag,{email,password}: Credentials) {
         await bag.authenticate('user');
     }
 

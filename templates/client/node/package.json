@@ -1,6 +1,6 @@
 {
-  "name": "{{appNameLC}}",
-  "version": "{{version}}",
+  "name": "{{name}/kc}",
+  "version": "0.0.1",
   "description": "{{description}}",
   "license": "{{license}}",
   "main": "dist/index.js",

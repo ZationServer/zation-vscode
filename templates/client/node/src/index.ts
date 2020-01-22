@@ -3,9 +3,9 @@ import {create} from 'zation-client';
 (async () => {
 
     const client = create({
-        hostname : '{{serverHost}}',
-        port : {{serverPort}},{{nlServerPath}}{{nlServerPostKey}}
-        debug : {{useDebug}}
+        hostname: '{{serverHost}}',
+        port: {{serverPort}},
+        debug: false
     });
 
     try {
@@ -19,7 +19,4 @@ import {create} from 'zation-client';
         console.error(e);
     }
 
-    process.exit();
-
 })();
-

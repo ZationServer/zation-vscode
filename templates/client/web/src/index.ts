@@ -4,9 +4,9 @@ import * as $ from "jquery";
 (async () => {
 
     const client = create({
-        hostname : '{{serverHost}}',
-        port : {{serverPort}},{{nlServerPath}}{{nlServerPostKey}}
-        debug : {{useDebug}}
+        hostname: '{{serverHost}}',
+        port: {{serverPort}},
+        debug: false
     });
 
     try {
@@ -21,4 +21,3 @@ import * as $ from "jquery";
     }
 
 })();
-

@@ -12,13 +12,13 @@ import { openProject } from '../../shared/vsCodeUtils';
 
 export async function createNewServerProject() {
 
-    let name = await askRequiredInput("Enter a name for your new project");
+    const name = await askRequiredInput("Enter a name for your new project");
 
     const distUri = (await processProjectFolderUri(name));
     const distFolder = distUri?.fsPath;
     if(distUri === undefined || distFolder === undefined) { throw new AbortedCommandError(); }
 
-    const description = await askOptionalInput("Enter a description","Zation application server"); 
+    const description = await askOptionalInput("Enter a description",`${name} application server`); 
     const author = await askOptionalInput("Enter author");
     const license = await askOptionalInput("Enter project license","ISC");
     const port = Number.parseInt(await askOptionalInput("Enter a port","3000"))?.toString();
@@ -27,10 +27,10 @@ export async function createNewServerProject() {
     const templateEngine = new TemplateEngine({
         name,
         description,
-        git : git !== undefined ? `\n  "repository": {\n    "type": "git",\n    "url": "${git}"\n  },` : '',
-        port,
-        license,
         author : author !== undefined ? `\n  "author" : "${author}", ` : '',
+        license,
+        port,
+        git : git !== undefined ? `\n  "repository": {\n    "type": "git",\n    "url": "${git}"\n  },` : '',
         ...versions
     });
 
@@ -87,7 +87,7 @@ export async function createNewServerProject() {
 
     const timeSeconds = ((Date.now() - startTimeStamp) / 1000).toFixed(1);
     vscode.window.showInformationMessage(`Zation server app: '${name}' is created in ${timeSeconds}s. 🎉`);
-    vscode.window.showInformationMessage("Open Project in 4 seconds...");
+    vscode.window.showInformationMessage("Open project in 4 seconds...");
 
     await new Promise(r => setInterval(() => r(),4000));
 
