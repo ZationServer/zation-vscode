@@ -1,5 +1,6 @@
 ## Introduction
 
+<p align="center">
 This [VS Code](https://code.visualstudio.com/) extension helps to create [Zation](https://zation.de/) projects and clone cluster components easy and fast.
 
 ![Zation new project example](https://github.com/ZationServer/zation-vscode/blob/master/assets/newProject-min.gif)
@@ -7,6 +8,7 @@ This [VS Code](https://code.visualstudio.com/) extension helps to create [Zation
 Additionally, it adds snippets that will help to develop a [Zation](https://zation.de/) application fast and efficiently.
 
 ![Zation new project example](https://github.com/ZationServer/zation-vscode/blob/master/assets/objectModelSnippet-min.gif)
+</p>
 
 ## Installation
 
