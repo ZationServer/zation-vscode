@@ -1,7 +1,7 @@
 import {Config}          from 'zation-server';
 
 //Controllers
-import "../controllers/auth/LogInController";
+import "../controllers/auth/LoginController";
 
 //Databoxes
 import "../databoxes/ProfileDatabox";
