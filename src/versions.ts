@@ -3,11 +3,15 @@ export const zationClientVersion = '0.9.9';
 export const zationAssuredVersion = '0.3.4';
 export const gulpTypescriptVersion = '5.0.0';
 export const typescriptVersion = '3.5.3';
+export const zationClusterStateVersion = '6.0.4';
+export const zationClusterBrokerVersion = '6.0.5';
 
 export const versions = {
     zationServerVersion,
     zationClientVersion,
     zationAssuredVersion,
     gulpTypescriptVersion,
-    typescriptVersion
+    typescriptVersion,
+    zationClusterStateVersion,
+    zationClusterBrokerVersion
 };

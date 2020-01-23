@@ -14,9 +14,9 @@ export async function createNewServerProject() {
 
     const name = await askRequiredInput("Enter a name for your new project");
 
-    const distUri = (await processProjectFolderUri(name));
-    const distFolder = distUri?.fsPath;
-    if(distUri === undefined || distFolder === undefined) { throw new AbortedCommandError(); }
+    const destUri = (await processProjectFolderUri(name));
+    const destFolder = destUri?.fsPath;
+    if(destUri === undefined || destFolder === undefined) { throw new AbortedCommandError(); }
 
     const description = await askOptionalInput("Enter a description",`${name} application server`); 
     const author = await askOptionalInput("Enter author");
@@ -41,12 +41,12 @@ export async function createNewServerProject() {
         cancellable: false
     },async (progress) => {
         progress.report({message: "Create folder..." });
-        fsExtra.ensureDirSync(distFolder);
+        fsExtra.ensureDirSync(destFolder);
         progress.report({increment : 5});
 
         progress.report({message: "Copy template files..." });
         try {
-            copyDirRecursive(serverTemplateDir,distFolder);
+            copyDirRecursive(serverTemplateDir,destFolder);
         }
         catch (e) {
             vscode.window.showErrorMessage(`Failed to copy template files: ${e.toString()}`);
@@ -57,11 +57,11 @@ export async function createNewServerProject() {
         progress.report({ message: "Template files..." });
 
         await templateEngine.templateFiles([
-            `${distFolder}/src/configs/main.config.ts`,
-            `${distFolder}/src/configs/starter.config.ts`,
-            `${distFolder}/src/index.ts`,
-            `${distFolder}/package.json`,
-            `${distFolder}/Dockerfile`
+            `${destFolder}/src/configs/main.config.ts`,
+            `${destFolder}/src/configs/starter.config.ts`,
+            `${destFolder}/src/index.ts`,
+            `${destFolder}/package.json`,
+            `${destFolder}/Dockerfile`
         ],async (i,length) => {
             progress.report({ increment: 30 / length, message: `Template file (${i}/${length})` });
         });
@@ -70,7 +70,7 @@ export async function createNewServerProject() {
 
         let installIncrement = 0;
         try {
-            await NpmRunner.installDependencies(distFolder,() => {
+            await NpmRunner.installDependencies(destFolder,() => {
                 if(installIncrement < 60){
                     let addIncrement = Math.random() * 10;
                     installIncrement += addIncrement;
@@ -86,10 +86,10 @@ export async function createNewServerProject() {
     });
 
     const timeSeconds = ((Date.now() - startTimeStamp) / 1000).toFixed(1);
-    vscode.window.showInformationMessage(`Zation server app: '${name}' is created in ${timeSeconds}s. 🎉`);
+    vscode.window.showInformationMessage(`Zation server app: '${name}' created in ${timeSeconds}s. 🎉`);
     vscode.window.showInformationMessage("Open project in 4 seconds...");
 
     await new Promise(r => setInterval(() => r(),4000));
 
-    openProject(distUri);
+    openProject(destUri);
 }

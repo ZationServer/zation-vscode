@@ -25,7 +25,8 @@
 		"Fast"
 	],
 	"activationEvents": [
-		"onCommand:zation.NewProject"
+		"onCommand:zation.NewProject",
+		"onCommand:zation.CloneClusterComponent"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -33,6 +34,10 @@
 			{
 				"command": "zation.NewProject",
 				"title": "Zation: New Project"
+			},
+			{
+				"command": "zation.CloneClusterComponent",
+				"title": "Zation: Clone Cluster Component"
 			}
 		],
 		"snippets": [
@@ -50,7 +55,8 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"dependencies": {
-		"fs-extra": "8.1.0"
+		"fs-extra": "8.1.0",
+		"download-git-repo": "3.0.2"
 	},
 	"devDependencies": {
 		"@types/fs-extra": "^8.0.1",

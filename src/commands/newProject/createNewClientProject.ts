@@ -39,9 +39,9 @@ export async function createNewClientProject() {
 
     const name = await askRequiredInput("Enter a name for your new project");
 
-    const distUri = (await processProjectFolderUri(name));
-    const distFolder = distUri?.fsPath;
-    if(distUri === undefined || distFolder === undefined) { throw new AbortedCommandError(); }
+    const destUri = (await processProjectFolderUri(name));
+    const destFolder = destUri?.fsPath;
+    if(destUri === undefined || destFolder === undefined) { throw new AbortedCommandError(); }
 
     const description = await askOptionalInput("Enter a description",`${name} application client`); 
     const author = await askOptionalInput("Enter author");
@@ -69,12 +69,12 @@ export async function createNewClientProject() {
         cancellable: false
     },async (progress) => {
         progress.report({message: "Create folder..." });
-        fsExtra.ensureDirSync(distFolder);
+        fsExtra.ensureDirSync(destFolder);
         progress.report({increment : 5});
 
         progress.report({message: "Copy template files..." });
         try {
-            copyDirRecursive(getClientTemplateDir(projectType),distFolder);
+            copyDirRecursive(getClientTemplateDir(projectType),destFolder);
         }
         catch (e) {
             vscode.window.showErrorMessage(`Failed to copy template files: ${e.toString()}`);
@@ -85,8 +85,8 @@ export async function createNewClientProject() {
         progress.report({ message: "Template files..." });
 
         await templateEngine.templateFiles([
-            `${distFolder}/src/index.ts`,
-            `${distFolder}/package.json`,
+            `${destFolder}/src/index.ts`,
+            `${destFolder}/package.json`,
         ],async (i,length) => {
             progress.report({ increment: 30 / length, message: `Template file (${i}/${length})` });
         });
@@ -95,7 +95,7 @@ export async function createNewClientProject() {
 
         let installIncrement = 0;
         try {
-            await NpmRunner.installDependencies(distFolder,() => {
+            await NpmRunner.installDependencies(destFolder,() => {
                 if(installIncrement < 60){
                     let addIncrement = Math.random() * 10;
                     installIncrement += addIncrement;
@@ -111,11 +111,11 @@ export async function createNewClientProject() {
     });
 
     const timeSeconds = ((Date.now() - startTimeStamp) / 1000).toFixed(1);
-    vscode.window.showInformationMessage(`Zation client app: '${name}' is created in ${timeSeconds}s. 🎉`);
+    vscode.window.showInformationMessage(`Zation client app: '${name}' created in ${timeSeconds}s. 🎉`);
     vscode.window.showInformationMessage("Open project in 4 seconds...");
 
     await new Promise(r => setInterval(() => r(),4000));
 
-    openProject(distUri);
+    openProject(destUri);
 
 }
