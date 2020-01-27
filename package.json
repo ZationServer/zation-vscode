@@ -26,7 +26,8 @@
 	],
 	"activationEvents": [
 		"onCommand:zation.NewProject",
-		"onCommand:zation.CloneClusterComponent"
+		"onCommand:zation.CloneClusterComponent",
+		"onCommand:zation.ShowVersions"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
@@ -38,6 +39,10 @@
 			{
 				"command": "zation.CloneClusterComponent",
 				"title": "Zation: Clone Cluster Component"
+			},
+			{
+				"command": "zation.ShowVersions",
+				"title": "Zation: Show Versions"
 			}
 		],
 		"snippets": [
