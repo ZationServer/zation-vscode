@@ -20,6 +20,8 @@ Another nice feature of the Zation framework is configuration error detection.
 This feature will check your configurations for errors. 
 If fatal errors are detected, the server won't start to protect you from an unsafe or faulty backend.
 
+**Notice that Zation is in development, and the final documentation is not finished yet.**
+
 ## Learn More 📚
 
 - [Read the documentation @docs.zationjs.org](https://docs.zationjs.org)
