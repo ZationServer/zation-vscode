@@ -1,4 +1,4 @@
-export const zationServerVersion = '1.4.1';
+export const zationServerVersion = '1.4.2';
 export const zationClientVersion = '1.0.1';
 export const zationAssuredVersion = '0.3.5';
 export const gulpTypescriptVersion = '5.0.0';
