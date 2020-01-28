@@ -36,7 +36,7 @@ export default class TemplateEngine {
         fs.appendFileSync(filePath,this.templateString(file));
     }
 
-    public async templateFiles(filePaths : string[],progressCallback : (current : number,length : number) => void | Promise<any>) : void {
+    public async templateFiles(filePaths : string[],progressCallback : (current : number,length : number) => void | Promise<any>) : Promise<void> {
         const length = filePaths.length;
         await progressCallback(0,length);
         for(let i = 0; i < length; i++) {
