@@ -54,18 +54,6 @@ function getClusterComponentGitAddress(component : ClusterComponent) {
 
 export async function cloneClusterComponent() {
 
-    try{
-        await cloneClusterComponentStart();
-    }
-    catch(e) {
-        if(e instanceof AbortedCommandError && !e.Silent) {
-            vscode.window.showWarningMessage("Clone cluster component aborted.");
-        }
-    }
-}
-
-export async function cloneClusterComponentStart() {
-
     const componentType = (await vscode.window.showQuickPick(
         [
             { label: 'State Server', description: 'Clones the zation-cluster-state server.', target: ClusterComponent.State},

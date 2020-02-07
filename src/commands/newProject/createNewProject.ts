@@ -4,19 +4,7 @@ import { createNewServerProject } from './createNewServerProject';
 import { createNewClientProject } from './createNewClientProject';
 import { AbortedCommandError } from '../../shared/abortedCommandError';
 
-export async function createNewProject() {
-
-    try{
-        await createNewProjectStart();
-    }
-    catch(e) {
-        if(e instanceof AbortedCommandError && !e.Silent) {
-            vscode.window.showWarningMessage("Create new project aborted.");
-        }
-    }
-}
-
-async function createNewProjectStart() {
+export async function createNewProject(): Promise<void> {
 
     const projectType = (await vscode.window.showQuickPick(
         [
@@ -29,13 +17,13 @@ async function createNewProjectStart() {
     ))?.target;
 
     switch(projectType){
-        case ProjectType.Server: 
+        case ProjectType.Server:
             await createNewServerProject();
         break;
-        case ProjectType.Client: 
+        case ProjectType.Client:
             await createNewClientProject();
         break;
-        default: 
+        default:
             throw new AbortedCommandError();
     }
 }
