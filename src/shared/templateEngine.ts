@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as fsExtra from "fs-extra";
-import {toCamelCase, toKebabCase} from "./stringUtils";
+import {toCamelCase, toKebabCase, toPascalCase} from "./stringUtils";
 import { Task } from "vscode";
 
 export default class TemplateEngine {
@@ -23,6 +23,10 @@ export default class TemplateEngine {
                     case "kebabCase":
                     case "kc":
                         value = toKebabCase(value);
+                        break;
+                    case "pascalCase":
+                    case "pc":
+                        value = toPascalCase(value);
                         break;
                 }
             }
