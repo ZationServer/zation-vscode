@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as fsExtra from "fs-extra";
-import {toCamelCase, toKebabCase} from "./stringUtils"; 
+import {toCamelCase, toKebabCase} from "./stringUtils";
 import { Task } from "vscode";
 
 export default class TemplateEngine {
@@ -13,14 +13,14 @@ export default class TemplateEngine {
 
     public templateString(value : string) : string {
         return value.replace(/{{(\w+)}(\/(\w*))?}/g, (_,key,__,type) => {
-            let value = this.map[key] || ""; 
+            let value = this.map[key] || "";
             if(type !== undefined){
                 switch((type as string).toLowerCase()){
-                    case "camelcase":
+                    case "camelCase":
                     case "cc":
                         value = toCamelCase(value);
                         break;
-                    case "kebabcase":
+                    case "kebabCase":
                     case "kc":
                         value = toKebabCase(value);
                         break;
