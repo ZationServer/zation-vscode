@@ -1,7 +1,7 @@
 import {Bag, DataboxConfig, DataboxFamily, Register} from "zation-server";
 
 @Register()
-export default class UserProfileDatabox extends DataboxFamily {
+export default class ProfileDatabox extends DataboxFamily {
 
     public static readonly config: DataboxConfig = {
         access: 'allAuth'
