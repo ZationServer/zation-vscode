@@ -9,6 +9,7 @@ import {versions} from "../../versions";
 import NpmRunner from "./../../shared/npmRunner";
 import { askRequiredInput, askOptionalInput } from '../../shared/inputHelper';
 import { openProject } from '../../shared/vsCodeUtils';
+import {toPascalCase} from "../../shared/stringUtils";
 
 export async function createNewServerProject() {
 
@@ -18,7 +19,7 @@ export async function createNewServerProject() {
     const destFolder = destUri?.fsPath;
     if(destUri === undefined || destFolder === undefined) { throw new AbortedCommandError(); }
 
-    const description = await askOptionalInput("Enter a description",`${name} application server`);
+    const description = await askOptionalInput("Enter a description",`The package ${toPascalCase(name)}...`);
     const author = await askOptionalInput("Enter author");
     const license = await askOptionalInput("Enter project license","ISC");
     const port = Number.parseInt(await askOptionalInput("Enter a port","3000"))?.toString();

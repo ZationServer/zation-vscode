@@ -9,6 +9,7 @@ import { copyDirRecursive } from '../../shared/fsUtils';
 import { clientTemplateDir } from '../../shared/constants';
 import NpmRunner from '../../shared/npmRunner';
 import { openProject } from '../../shared/vsCodeUtils';
+import {toPascalCase} from "../../shared/stringUtils";
 
 enum ClientProjectType {
     Web,
@@ -43,7 +44,7 @@ export async function createNewClientProject() {
     const destFolder = destUri?.fsPath;
     if(destUri === undefined || destFolder === undefined) { throw new AbortedCommandError(); }
 
-    const description = await askOptionalInput("Enter a description",`${name} application client`);
+    const description = await askOptionalInput("Enter a description",`The package ${toPascalCase(name)}...`);
     const author = await askOptionalInput("Enter author");
     const license = await askOptionalInput("Enter project license","ISC");
     const git = await askOptionalInput("Enter git repository");
