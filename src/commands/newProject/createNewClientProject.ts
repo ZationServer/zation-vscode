@@ -39,12 +39,13 @@ export async function createNewClientProject() {
     if(projectType === undefined) { throw new AbortedCommandError(); }
 
     const name = await askRequiredInput("Enter a name for your new project");
+    const pascalCaseName = toPascalCase(name);
 
-    const destUri = (await processProjectFolderUri(name));
+    const destUri = (await processProjectFolderUri(pascalCaseName));
     const destFolder = destUri?.fsPath;
     if(destUri === undefined || destFolder === undefined) { throw new AbortedCommandError(); }
 
-    const description = await askOptionalInput("Enter a description",`The package ${toPascalCase(name)}...`);
+    const description = await askOptionalInput("Enter a description",`The package ${pascalCaseName}...`);
     const author = await askOptionalInput("Enter author");
     const git = await askOptionalInput("Enter git repository");
 
