@@ -32,7 +32,7 @@ export async function createNewClientProject() {
             { label: 'Node', description: 'Creates an client typescript project with gulp.', target: ClientProjectType.Node}
         ],{
             matchOnDescription: true,
-            placeHolder: "What type of client project do you want to create?",
+            placeHolder: "Which type of client project do you want to create?",
         },
     ))?.target;
     if(projectType === undefined) { throw new AbortedCommandError(); }
@@ -43,12 +43,12 @@ export async function createNewClientProject() {
     const destFolder = destUri?.fsPath;
     if(destUri === undefined || destFolder === undefined) { throw new AbortedCommandError(); }
 
-    const description = await askOptionalInput("Enter a description",`${name} application client`); 
+    const description = await askOptionalInput("Enter a description",`${name} application client`);
     const author = await askOptionalInput("Enter author");
     const license = await askOptionalInput("Enter project license","ISC");
     const git = await askOptionalInput("Enter git repository");
 
-    const serverHost = await askOptionalInput("Enter the server host","localhost"); 
+    const serverHost = await askOptionalInput("Enter the server host","localhost");
     const serverPort = Number.parseInt(await askOptionalInput("Enter the server port","3000"))?.toString();
 
     const templateEngine = new TemplateEngine({
