@@ -21,7 +21,6 @@ export async function createNewServerProject() {
 
     const description = await askOptionalInput("Enter a description",`The package ${toPascalCase(name)}...`);
     const author = await askOptionalInput("Enter author");
-    const license = await askOptionalInput("Enter project license","ISC");
     const port = Number.parseInt(await askOptionalInput("Enter a port","3000"))?.toString();
     const git = await askOptionalInput("Enter git repository");
 
@@ -29,7 +28,6 @@ export async function createNewServerProject() {
         name,
         description,
         author : author !== undefined ? `\n  "author" : "${author}", ` : '',
-        license,
         port,
         git : git !== undefined ? `\n  "repository": {\n    "type": "git",\n    "url": "${git}"\n  },` : '',
         ...versions

@@ -46,7 +46,6 @@ export async function createNewClientProject() {
 
     const description = await askOptionalInput("Enter a description",`The package ${toPascalCase(name)}...`);
     const author = await askOptionalInput("Enter author");
-    const license = await askOptionalInput("Enter project license","ISC");
     const git = await askOptionalInput("Enter git repository");
 
     const serverHost = await askOptionalInput("Enter the server host","localhost");
@@ -56,7 +55,6 @@ export async function createNewClientProject() {
         name,
         description,
         author : author !== undefined ? `\n  "author" : "${author}", ` : '',
-        license,
         git : git !== undefined ? `\n  "repository": {\n    "type": "git",\n    "url": "${git}"\n  },` : '',
         serverHost,
         serverPort,
