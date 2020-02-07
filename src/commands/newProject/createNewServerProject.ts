@@ -5,7 +5,7 @@ import TemplateEngine from '../../shared/templateEngine';
 import { copyDirRecursive } from '../../shared/fsUtils';
 import { serverTemplateDir } from '../../shared/constants';
 import * as fsExtra from "fs-extra";
-import {versions} from "./../../versions";
+import {versions} from "../../versions";
 import NpmRunner from "./../../shared/npmRunner";
 import { askRequiredInput, askOptionalInput } from '../../shared/inputHelper';
 import { openProject } from '../../shared/vsCodeUtils';
@@ -18,7 +18,7 @@ export async function createNewServerProject() {
     const destFolder = destUri?.fsPath;
     if(destUri === undefined || destFolder === undefined) { throw new AbortedCommandError(); }
 
-    const description = await askOptionalInput("Enter a description",`${name} application server`); 
+    const description = await askOptionalInput("Enter a description",`${name} application server`);
     const author = await askOptionalInput("Enter author");
     const license = await askOptionalInput("Enter project license","ISC");
     const port = Number.parseInt(await askOptionalInput("Enter a port","3000"))?.toString();
