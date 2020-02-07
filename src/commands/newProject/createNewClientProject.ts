@@ -112,6 +112,7 @@ export async function createNewClientProject() {
 
     const timeSeconds = ((Date.now() - startTimeStamp) / 1000).toFixed(1);
     vscode.window.showInformationMessage(`Zation client app: '${name}' created in ${timeSeconds}s. 🎉`);
+    vscode.window.showInformationMessage("You can start the client with the command: 'npm start'.");
     vscode.window.showInformationMessage("Open project in 4 seconds...");
 
     await new Promise(r => setInterval(() => r(),4000));

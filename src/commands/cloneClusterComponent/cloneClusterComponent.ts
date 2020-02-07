@@ -16,7 +16,7 @@ function getClusterComponentPackageName(component : ClusterComponent): string {
         case ClusterComponent.State:
             return "zation-cluster-state";
         case ClusterComponent.Broker:
-            return "zation-cluster-broker";    
+            return "zation-cluster-broker";
     }
 }
 
@@ -25,7 +25,7 @@ function getClusterComponentName(component : ClusterComponent): string {
         case ClusterComponent.State:
             return "Zation Cluster State";
         case ClusterComponent.Broker:
-            return "Zation Cluster Broker";    
+            return "Zation Cluster Broker";
     }
 }
 
@@ -34,7 +34,16 @@ function getClusterComponentVersion(component : ClusterComponent): string {
         case ClusterComponent.State:
             return zationClusterStateVersion;
         case ClusterComponent.Broker:
-            return zationClusterBrokerVersion;    
+            return zationClusterBrokerVersion;
+    }
+}
+
+function getClusterComponentHelperText(component : ClusterComponent): string {
+    switch(component) {
+        case ClusterComponent.State:
+            return "You can start the zation-cluster-state server with 'npm start'.";
+        case ClusterComponent.Broker:
+            return "You can start the zation-cluster-broker server with 'STATE_SERVER_HOST=\"localhost\" node index.js'.";
     }
 }
 
@@ -117,6 +126,7 @@ export async function cloneClusterComponentStart() {
 
     const timeSeconds = ((Date.now() - startTimeStamp) / 1000).toFixed(1);
     vscode.window.showInformationMessage(`The ${getClusterComponentName(componentType)} cloned in ${timeSeconds}s. 🎉`);
+    vscode.window.showInformationMessage(getClusterComponentHelperText(componentType));
     vscode.window.showInformationMessage("Open folder in 4 seconds...");
 
     await new Promise(r => setInterval(() => r(),4000));
