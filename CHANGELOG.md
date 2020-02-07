@@ -18,3 +18,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Updated snippets for new Register decorator support
 - Updated Readme
 - Improved snippets
+
+## [0.8.5] - 2020-02-07
+### Added
+- Support for Zation bundle version
+### Updated
+- Improved templates
+- Improved process of creating a new project or cloning a cluster component
