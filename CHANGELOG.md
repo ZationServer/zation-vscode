@@ -29,3 +29,11 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Updated
 - Improved templates
 - Improved process of creating a new project or cloning a cluster component
+
+## [0.8.8] - 2020-03-24
+
+### Updated
+- Update to zation bundle version 0.1.0
+- Update templates to support new zation bundle version
+- General improvements of templates
+- Improve snippets
