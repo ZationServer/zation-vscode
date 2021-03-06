@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { AbortedCommandError } from '../../shared/abortedCommandError';
-import { processAndPrepareFolderUri } from '../newProject/folderHelper';
+import { processFolderUri } from '../newProject/folderHelper';
 import { gitClone } from '../../shared/gitCloner';
 import * as fsExtra from "fs-extra";
 import { zationClusterStateVersion, zationClusterBrokerVersion } from '../../versions';
@@ -68,7 +68,7 @@ export async function cloneClusterComponent() {
         throw new AbortedCommandError();
     }
 
-    const destUri = (await processAndPrepareFolderUri(getClusterComponentPackageName(componentType)));
+    const [destUri,preprocessFolder] = (await processFolderUri(getClusterComponentPackageName(componentType)));
     const destFolder = destUri?.fsPath;
     if(destUri === undefined || destFolder === undefined) { throw new AbortedCommandError(); }
 
@@ -79,7 +79,8 @@ export async function cloneClusterComponent() {
         title: `Clone: ${getClusterComponentName(componentType)} `,
         cancellable: false
     },async (progress) => {
-        progress.report({message: "Create folder..." });
+        progress.report({message: "Prepare folder..." });
+        preprocessFolder();
         fsExtra.ensureDirSync(destFolder);
         progress.report({increment : 10});
 
@@ -117,7 +118,7 @@ export async function cloneClusterComponent() {
     vscode.window.showInformationMessage(getClusterComponentHelperText(componentType));
     vscode.window.showInformationMessage("Open folder in 4 seconds...");
 
-    await new Promise(r => setInterval(() => r(),4000));
+    await new Promise<void>(r => setInterval(() => r(),4000));
 
     openProject(destUri);
 }

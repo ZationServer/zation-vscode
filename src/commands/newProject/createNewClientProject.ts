@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { processAndPrepareFolderUri } from './folderHelper';
+import { processFolderUri } from './folderHelper';
 import { AbortedCommandError } from '../../shared/abortedCommandError';
 import { askRequiredInput, askOptionalInput } from '../../shared/inputHelper';
 import TemplateEngine from '../../shared/templateEngine';
@@ -41,7 +41,7 @@ export async function createNewClientProject() {
     const name = await askRequiredInput("Enter a name for your new project");
     const pascalCaseName = toPascalCase(name);
 
-    const destUri = (await processAndPrepareFolderUri(pascalCaseName));
+    const [destUri,preprocessFolder] = (await processFolderUri(pascalCaseName));
     const destFolder = destUri?.fsPath;
     if(destUri === undefined || destFolder === undefined) { throw new AbortedCommandError(); }
 
@@ -68,7 +68,8 @@ export async function createNewClientProject() {
         title: `Create Project: ${name} `,
         cancellable: false
     },async (progress) => {
-        progress.report({message: "Create folder..." });
+        progress.report({message: "Prepare folder..." });
+        preprocessFolder();
         fsExtra.ensureDirSync(destFolder);
         progress.report({increment : 5});
 

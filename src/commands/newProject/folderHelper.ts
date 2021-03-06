@@ -7,7 +7,7 @@ import * as emptyDir from "empty-dir";
 import { askYesOrNo } from '../../shared/inputHelper';
 import * as fsExtra from "fs-extra";
 
-export async function processAndPrepareFolderUri(projectName : string) : Promise<vscode.Uri | undefined> {
+export async function processFolderUri(projectName : string) : Promise<[vscode.Uri | undefined,() => void]> {
     const folders = await vscode.window.showOpenDialog({ canSelectFolders: true });
     if (!folders || folders.length !== 1) {
         throw new AbortedCommandError();
@@ -34,14 +34,15 @@ export async function processAndPrepareFolderUri(projectName : string) : Promise
         }
     }
 
-    if(emptyFolder) {
-        try {fsExtra.emptyDirSync(folderPath)}
+
+    return [uri,emptyFolder ? () => {
+        try {
+            fsExtra.emptyDirSync(folderPath)
+        }
         catch(_) {
             vscode.window.showErrorMessage(`Failed to empty existing directory at ${folderPath
                 }.\nThis directory may be used by another program or you may not have the permission to empty it.`)
             throw new AbortedCommandError(true);
         }
-    } 
-
-    return uri;
+    } : () => {}];
 }

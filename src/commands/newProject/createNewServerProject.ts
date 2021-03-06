@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { processAndPrepareFolderUri } from './folderHelper';
+import { processFolderUri as askFolderInformation } from './folderHelper';
 import { AbortedCommandError } from '../../shared/abortedCommandError';
 import TemplateEngine from '../../shared/templateEngine';
 import { copyDirRecursive } from '../../shared/fsUtils';
@@ -16,7 +16,7 @@ export async function createNewServerProject() {
     const name = await askRequiredInput("Enter a name for your new project");
     const pascalCaseName = toPascalCase(name);
 
-    const destUri = (await processAndPrepareFolderUri(pascalCaseName));
+    const [destUri,preprocessFolder] = (await askFolderInformation(pascalCaseName));
     const destFolder = destUri?.fsPath;
     if(destUri === undefined || destFolder === undefined) { throw new AbortedCommandError(); }
 
@@ -40,7 +40,8 @@ export async function createNewServerProject() {
         title: `Create Project: ${name} `,
         cancellable: false
     },async (progress) => {
-        progress.report({message: "Create folder..." });
+        progress.report({message: "Prepare folder..." });
+        preprocessFolder();
         fsExtra.ensureDirSync(destFolder);
         progress.report({increment : 5});
 
