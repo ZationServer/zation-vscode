@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { processProjectFolderUri } from './folderHelper';
+import { processAndPrepareFolderUri } from './folderHelper';
 import { AbortedCommandError } from '../../shared/abortedCommandError';
 import TemplateEngine from '../../shared/templateEngine';
 import { copyDirRecursive } from '../../shared/fsUtils';
@@ -16,7 +16,7 @@ export async function createNewServerProject() {
     const name = await askRequiredInput("Enter a name for your new project");
     const pascalCaseName = toPascalCase(name);
 
-    const destUri = (await processProjectFolderUri(pascalCaseName));
+    const destUri = (await processAndPrepareFolderUri(pascalCaseName));
     const destFolder = destUri?.fsPath;
     if(destUri === undefined || destFolder === undefined) { throw new AbortedCommandError(); }
 
@@ -90,7 +90,7 @@ export async function createNewServerProject() {
     vscode.window.showInformationMessage("You can start the server with the command: 'npm start'.");
     vscode.window.showInformationMessage("Open project in 4 seconds...");
 
-    await new Promise(r => setInterval(() => r(),4000));
+    await new Promise<void>(r => setInterval(() => r(),4000));
 
     openProject(destUri);
 }

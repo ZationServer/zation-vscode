@@ -1,6 +1,10 @@
 import * as vscode from 'vscode';
 import { AbortedCommandError } from './abortedCommandError';
 
+export async function askYesOrNo(msg: string): Promise<boolean> {
+    return (await vscode.window.showQuickPick(['Yes','No'],{placeHolder: msg})) === 'Yes';
+}
+
 export async function askRequiredInput(prompt : string,placeHolder : string = "...") : Promise<string> {
     let value : string | undefined = "";
     while(value === "") {

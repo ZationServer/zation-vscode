@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { AbortedCommandError } from '../../shared/abortedCommandError';
-import { processProjectFolderUri } from '../newProject/folderHelper';
+import { processAndPrepareFolderUri } from '../newProject/folderHelper';
 import { gitClone } from '../../shared/gitCloner';
 import * as fsExtra from "fs-extra";
 import { zationClusterStateVersion, zationClusterBrokerVersion } from '../../versions';
@@ -68,7 +68,7 @@ export async function cloneClusterComponent() {
         throw new AbortedCommandError();
     }
 
-    const destUri = (await processProjectFolderUri(getClusterComponentPackageName(componentType)));
+    const destUri = (await processAndPrepareFolderUri(getClusterComponentPackageName(componentType)));
     const destFolder = destUri?.fsPath;
     if(destUri === undefined || destFolder === undefined) { throw new AbortedCommandError(); }
 
