@@ -40,6 +40,7 @@ export async function createNewServerProject() {
         title: `Create Project: ${name} `,
         cancellable: false
     },async (progress) => {
+        await new Promise<void>(r => setInterval(() => r(),50));
         progress.report({message: "Prepare folder..." });
         preprocessFolder();
         fsExtra.ensureDirSync(destFolder);

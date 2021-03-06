@@ -79,6 +79,7 @@ export async function cloneClusterComponent() {
         title: `Clone: ${getClusterComponentName(componentType)} `,
         cancellable: false
     },async (progress) => {
+        await new Promise<void>(r => setInterval(() => r(),50));
         progress.report({message: "Prepare folder..." });
         preprocessFolder();
         fsExtra.ensureDirSync(destFolder);
