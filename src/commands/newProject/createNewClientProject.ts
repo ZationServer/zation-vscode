@@ -116,7 +116,7 @@ export async function createNewClientProject() {
     vscode.window.showInformationMessage("You can start the client with the command: 'npm start'.");
     vscode.window.showInformationMessage("Open project in 4 seconds...");
 
-    await new Promise(r => setInterval(() => r(),4000));
+    await new Promise<void>(r => setInterval(() => r(),4000));
 
     openProject(destUri);
 
