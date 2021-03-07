@@ -1,10 +1,6 @@
 import {Config, $init} from 'zation-server';
 
-//Controllers
-import "../controllers/auth/LoginController";
-
-//Databoxes
-import "../databoxes/ProfileDatabox";
+import "../app";
 
 export default Config.appConfig({
     userGroups: {
@@ -16,10 +12,6 @@ export default Config.appConfig({
     },
 
     controllerDefaults: {
-        wsAccess: true,
-        httpAccess: false,
-        httpPostAllowed: true,
-        httpGetAllowed: true,
         access: 'all'
     },
 
@@ -33,7 +25,7 @@ export default Config.appConfig({
         socketConnection: $init((bag) => {
             const workerId = bag.getWorkerId();
             return (socket) => {
-                bag.log.info('New Socket connected: ',socket.id,' on worker: ',workerId);
+                bag.log.info(`New socket (${socket.id}) connected on worker: ${workerId}`);
             }
         })
     }
