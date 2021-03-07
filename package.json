@@ -3,7 +3,7 @@
 	"displayName": "Zation",
 	"publisher": "LucaCode",
 	"description": "Snippets and commands for Zation development.",
-	"version": "0.8.81",
+	"version": "0.9.0",
 	"engines": {
 		"vscode": "^1.41.0"
 	},
