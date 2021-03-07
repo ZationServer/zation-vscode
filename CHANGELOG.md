@@ -37,3 +37,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Update templates to support new zation bundle version
 - General improvements of templates
 - Improve snippets
+
+## [0.9.0] - 2021-03-07
+
+### Added
+- Creating projects in an existing folder.
+
+### Updated
+- Update to zation bundle version 0.2.0
+- Update templates to support new zation bundle version
+- General improvements of templates
+- Add and update snippets
