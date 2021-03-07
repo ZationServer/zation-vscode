@@ -2,49 +2,70 @@
     "Creates a new Controller.": {
         "prefix": "zc",
         "body": [
-            "import {Register, Controller, ControllerConfig, Result, BackError, BackErrorBag, Bag, RequestBag} from 'zation-server';",
+            "import {Controller, Socket, BackError, BackErrorBag} from 'zation-server';",
             "",
-            "@Register()",
+            "@Controller.Config({",
+            "    access: 'all',",
+            "    ${2}",
+            "})",
             "export default class ${1:Name}Controller extends Controller {",
             "",
-            "    static readonly config: ControllerConfig = {",
-            "        ${2}",
-            "    };",
-            "",
-            "    async initialize(bag: Bag) {",
-            "",
+            "    async initialize() {",
+            "        ",
             "    }",
             "",
-            "    async handle(bag: RequestBag,{}) {",
-            "",
+            "    async handle(socket: Socket, input: any) {",
+            "        ${3}",
             "    }",
             "",
-            "    async finallyHandle(bag: RequestBag, input: any) {",
-            "",
-            "    }",
-            "",
-            "    async invalidInput(bag: RequestBag, rawInput: any, backErrorBag: BackErrorBag) {",
-            "",
+            "    async invalidInput(socket: Socket, rawInput: any) {",
+            "        ",
             "    }",
             "",
             "}"
         ],
         "description": "Creates a new Controller."
     },
+    "Creates a new Receiver.": {
+        "prefix": "zr",
+        "body": [
+            "import {Receiver, Socket, BackError, BackErrorBag} from 'zation-server';",
+            "",
+            "@Receiver.Config({",
+            "    access: 'all',",
+            "    ${2}",
+            "})",
+            "export default class ${1:Name}Receiver extends Receiver {",
+            "",
+            "    async initialize() {",
+            "        ",
+            "    }",
+            "",
+            "    async handle(socket: Socket, input: any) {",
+            "        ${3}",
+            "    }",
+            "",
+            "    async invalidInput(socket: Socket, rawInput: any) {",
+            "        ",
+            "    }",
+            "",
+            "}"
+        ],
+        "description": "Creates a new Receiver."
+    },
     "Creates a new Databox.": {
         "prefix": "zdb",
         "body": [
-            "import {Bag, DataboxConfig, Databox, Register, ZSocket} from \"zation-server\";",
+            "import {Databox, FetchRequest, DbInConnection} from 'zation-server';",
             "",
-            "@Register()",
+            "@Databox.Config({",
+            "    access: 'all',",
+            "    ${2}",
+            "})",
             "export default class ${1:Name}Databox extends Databox {",
             "",
-            "    static readonly config: DataboxConfig = {",
-            "        ${2}",
-            "    };",
-            "",
-            "    async fetch(counter: number, session: any, input: any, initData: any, socket: ZSocket) {",
-            "",
+            "    async fetch(request: FetchRequest, connection: DbInConnection) {",
+            "        ${3}",
             "    }",
             "",
             "}"
@@ -54,31 +75,72 @@
     "Creates a new DataboxFamily.": {
         "prefix": "zdbf",
         "body": [
-            "import {Bag, DataboxConfig, DataboxFamily, Register} from \"zation-server\";",
+            "import {DataboxFamily, FetchRequest, DbFamilyInConnection} from 'zation-server';",
             "",
-            "@Register()",
+            "@DataboxFamily.Config({",
+            "    access: 'all',",
+            "    ${2}",
+            "})",
             "export default class ${1:Name}Databox extends DataboxFamily {",
             "",
-            "    static readonly config: DataboxConfig = {",
-            "        ${2}",
-            "    };",
-            "",
-            "    async fetch(id: string, counter: number, session: any, input: any, initData: any, socket: ZSocket) {",
-            "",
-            "    }",
-            "",
-            "    async isIdValid(id: string, bag: Bag) {",
-            "",
+            "    async fetch(request: FetchRequest, connection: DbFamilyInConnection) {",
+            "        ${3}",
             "    }",
             "",
             "}"
         ],
         "description": "Creates a new DataboxFamily."
     },
+    "Creates a new Channel.": {
+        "prefix": "zch",
+        "body": [
+            "import {Channel, Socket} from 'zation-server';",
+            "",
+            "@Channel.Config({",
+            "    access: 'all',",
+            "    ${2}",
+            "})",
+            "export default class ${1:Name}Channel extends Channel {",
+            "",
+            "    async onSubscription(socket: Socket) {",
+            "        ${3}",
+            "    }",
+            "",
+            "}"
+        ],
+        "description": "Creates a new Channel."
+    },
+    "Creates a new ChannelFamily.": {
+        "prefix": "zchf",
+        "body": [
+            "import {ChannelFamily, Socket} from 'zation-server';",
+            "",
+            "@ChannelFamily.Config({",
+            "    access: 'all',",
+            "    ${2}",
+            "})",
+            "export default class ${1:Name}Channel extends ChannelFamily {",
+            "",
+            "    async onSubscription(member, socket: Socket) {",
+            "        ${3}",
+            "    }",
+            "",
+            "}"
+        ],
+        "description": "Creates a new ChannelFamily."
+    },
+    "Creates a new injection.": {
+        "prefix": "zi",
+        "body": [
+            "@Inject(${3:inject})",
+            "private readonly ${1:propName}: ${2:propType};"
+        ],
+        "description": "Creates a new injection."
+    },
     "Creates a new ObjectModel.": {
         "prefix": "zom",
         "body": [
-            "import {ObjectModel,Constructor,Model} from 'zation-server';",
+            "import {ObjectModel, Constructor, Model} from 'zation-server';",
             "@ObjectModel()",
             "class ${1:name} {",
             "",
@@ -95,21 +157,6 @@
         ],
         "description": "Creates a new ObjectModel."
     },
-    "Creates a new ParamInput.": {
-        "prefix": "zpi",
-        "body": [
-            "import {ParamInput,Model} from 'zation-server';",
-            "@ParamInput()",
-            "class ${1:name} {",
-            "",
-            "    @Model({${4:firstPropModel}})",
-            "    ${2:firstPropName}: ${3:firstPropType};",
-            "",
-            "}",
-            ""
-        ],
-        "description": "Creates a new ParamInput."
-    },
     "Creates a new ModelProperty.": {
         "prefix": "zmp",
         "body": [
@@ -117,15 +164,5 @@
             "${1:propName}: ${2:propType};"
         ],
         "description": "Creates a new ModelProperty."
-    },
-    "Creates a new ObjectModel Constructor.": {
-        "prefix": "zomc",
-        "body": [
-            "@Constructor()",
-            "async ${1:name}() {",
-            "    ${2}",
-            "}"
-        ],
-        "description": "Creates a new ObjectModel Constructor."
     }
 }
