@@ -55,3 +55,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Update to zation bundle version 0.3.0
 - Update templates to support new zation bundle version
 - General improvements of templates
+
+## [0.9.3] - 2021-03-12
+
+### Updated
+- Update to zation bundle version 0.4.0
+- Update templates to support new zation bundle version
