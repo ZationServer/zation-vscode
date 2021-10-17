@@ -9,16 +9,9 @@ Additionally, it adds snippets that will help to develop a [Zation](https://zati
 ![Zation new project example](https://raw.githubusercontent.com/ZationServer/zation-vscode/master/assets/objectModelSnippet-min.gif)
 
 ## What is Zation?
-Zation is an application server framework that lets you build fast, real-time, secure, and scalable backends. 
-You can scale it on more CPU cores or machines/instances. 
-It's ideal for creating real-time apps, e.g. mobile apps with react-native, multiplayer games, or real-time statistic apps. 
-The Zation API is providing lots of functions, like a big toolbox, and is well structured and documented. 
-The complete framework has full typescript and promises support. 
-Also, it's easy to use, which lets you build big backends very quickly. 
-The Zation framework also provides client libraries for communicating to the backend and a library for testing the server. 
-Another nice feature of the Zation framework is configuration error detection. 
-This feature will check your configurations for errors. 
-If fatal errors are detected, the server won't start to protect you from an unsafe or faulty backend.
+Zation is an application server framework that lets you build fast, real-time, secure, and scalable backends. You can scale it on multiple CPU cores or machines/instances. It's ideal for creating real-time apps, e.g. mobile apps with react-native, multiplayer games, or real-time statistic apps. The Zation API provides an extensive toolbox and is well structured and documented. The entire framework has complete typescript and promises support. Also, it's easy to use, which lets you build big backends very quickly. 
+
+A Zation server is built on different component types: Controllers, Receivers, Channels and Databoxes. Controllers give you the possibility to handle requests from clients and send responses. Receivers only receive information from a client without responding. Channels can be subscribed from the client-side to get published data from the server-side in real-time. Databoxes offers a way to synchronize data efficiently and in real-time from the server-side to a specific group of clients. All components can be protected with security rules or against invalid data. It is supported to send raw binary data or stream information in chunks between the server and the client. Underlying Zation is written in typescript and uses the WebSocket based library Ziron, which is optimized for Zation. A library for creating integration tests for a Zation server is available. At the moment, there is only a client SDK in TypeScript available.
 
 **Notice that Zation is in development, and the final documentation is not finished yet.**
 
@@ -26,7 +19,7 @@ If fatal errors are detected, the server won't start to protect you from an unsa
 
 - [Read the documentation @docs.zationjs.org](https://docs.zationjs.org)
 
-> If you really don't know how you can implement something after reading the documentation. Try to look in the documentation of the Zation API. If this not helps, you can send me a message to <a href="mailto:info@zation.de">info@zation.de</a>.
+> If you really don't know how you can implement something after reading the documentation. Try to look in the documentation of the Zation API. If this not helps, feel free to contact me.
 
 ## License
 
