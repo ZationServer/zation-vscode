@@ -1,14 +1,14 @@
 {
-    "Creates a new Controller.": {
+    "Creates a new controller.": {
         "prefix": "zc",
         "body": [
-            "import {Controller, Socket, BackError, BackErrorBag} from 'zation-server';",
+            "import {Controller, Socket, BackError, BackErrorBag} from \"zation-server\";",
             "",
             "@Controller.Config({",
             "    access: 'all',",
             "    ${2}",
             "})",
-            "export default class ${1:Name}Controller extends Controller {",
+            "export default class ${1:Name} extends Controller {",
             "",
             "    async initialize() {",
             "        ",
@@ -24,18 +24,18 @@
             "",
             "}"
         ],
-        "description": "Creates a new Controller."
+        "description": "Creates a new controller."
     },
-    "Creates a new Receiver.": {
+    "Creates a new receiver.": {
         "prefix": "zr",
         "body": [
-            "import {Receiver, Socket, BackError, BackErrorBag} from 'zation-server';",
+            "import {Receiver, Socket, BackError, BackErrorBag} from \"zation-server\";",
             "",
             "@Receiver.Config({",
             "    access: 'all',",
             "    ${2}",
             "})",
-            "export default class ${1:Name}Receiver extends Receiver {",
+            "export default class ${1:Name} extends Receiver {",
             "",
             "    async initialize() {",
             "        ",
@@ -51,83 +51,83 @@
             "",
             "}"
         ],
-        "description": "Creates a new Receiver."
+        "description": "Creates a new receiver."
     },
-    "Creates a new Databox.": {
+    "Creates a new databox.": {
         "prefix": "zdb",
         "body": [
-            "import {Databox, FetchRequest, DbInConnection} from 'zation-server';",
+            "import {Databox, FetchRequest, DbInConnection} from \"zation-server\";",
             "",
             "@Databox.Config({",
             "    access: 'all',",
-            "    ${2}",
+            "    ${3}",
             "})",
-            "export default class ${1:Name}Databox extends Databox {",
+            "export default class ${1:Name} extends Databox<${2:Content}> {",
             "",
-            "    async fetch(request: FetchRequest, connection: DbInConnection) {",
-            "        ${3}",
+            "    protected async fetch(request: FetchRequest, connection: DbInConnection) {",
+            "        ${4}",
             "    }",
             "",
             "}"
         ],
-        "description": "Creates a new Databox."
+        "description": "Creates a new databox."
     },
-    "Creates a new DataboxFamily.": {
-        "prefix": "zdbf",
+    "Creates a new static databox.": {
+        "prefix": "zsdb",
         "body": [
-            "import {DataboxFamily, FetchRequest, DbFamilyInConnection} from 'zation-server';",
+            "import {StaticDatabox, FetchRequest, StaticDbInConnection} from \"zation-server\";",
             "",
-            "@DataboxFamily.Config({",
+            "@StaticDatabox.Config({",
             "    access: 'all',",
-            "    ${2}",
+            "    ${3}",
             "})",
-            "export default class ${1:Name}Databox extends DataboxFamily {",
+            "export default class ${1:Name} extends StaticDatabox<${2:Content}> {",
             "",
-            "    async fetch(request: FetchRequest, connection: DbFamilyInConnection) {",
-            "        ${3}",
+            "    protected async fetch(request: FetchRequest, connection: StaticDbInConnection) {",
+            "        ${4}",
             "    }",
             "",
             "}"
         ],
-        "description": "Creates a new DataboxFamily."
+        "description": "Creates a new static databox."
     },
-    "Creates a new Channel.": {
+    "Creates a new channel.": {
         "prefix": "zch",
         "body": [
-            "import {Channel, Socket} from 'zation-server';",
+            "import {Channel, Socket} from \"zation-server\";",
             "",
             "@Channel.Config({",
             "    access: 'all',",
             "    ${2}",
             "})",
-            "export default class ${1:Name}Channel extends Channel {",
+            "export default class ${1:Name} extends Channel {",
             "",
-            "    async onSubscription(socket: Socket) {",
+            "    protected async onSubscription(member, socket: Socket) {",
             "        ${3}",
             "    }",
             "",
             "}"
         ],
-        "description": "Creates a new Channel."
+        "description": "Creates a new channel."
     },
-    "Creates a new ChannelFamily.": {
-        "prefix": "zchf",
+    "Creates a new static channel.": {
+        "prefix": "zsch",
         "body": [
-            "import {ChannelFamily, Socket} from 'zation-server';",
+            "import {StaticChannel, Socket} from \"zation-server\";",
             "",
-            "@ChannelFamily.Config({",
+            "@StaticChannel.Config({",
             "    access: 'all',",
             "    ${2}",
             "})",
-            "export default class ${1:Name}Channel extends ChannelFamily {",
+            "export default class ${1:Name} extends StaticChannel {",
             "",
-            "    async onSubscription(member, socket: Socket) {",
+            "    protected async onSubscription(socket: Socket) {",
             "        ${3}",
             "    }",
             "",
             "}"
         ],
-        "description": "Creates a new ChannelFamily."
+        "description": "Creates a new static channel."
     },
     "Creates a new injection.": {
         "prefix": "zi",
@@ -137,32 +137,34 @@
         ],
         "description": "Creates a new injection."
     },
-    "Creates a new ObjectModel.": {
+    "Creates a new object model.": {
         "prefix": "zom",
         "body": [
-            "import {ObjectModel, Constructor, Model} from 'zation-server';",
+            "import {ObjectModel, Constructor, Model} from \"zation-server\";",
             "@ObjectModel()",
             "class ${1:name} {",
             "",
             "    @Constructor()",
-            "    async init() {",
+            "    protected async init() {",
             "        ",
             "    }",
             "",
-            "    @Model(${4:firstPropModel})",
-            "    ${2:firstPropName}: ${3:firstPropType};",
+            "    ${2:firstPropName} = ModelProp({",
+            "        type: \"${2:firstPropModelType}\",",
+            "    });",
             "",
             "}",
             ""
         ],
-        "description": "Creates a new ObjectModel."
+        "description": "Creates a new object model."
     },
-    "Creates a new ModelProperty.": {
+    "Creates a new model property.": {
         "prefix": "zmp",
         "body": [
-            "@Model(${3:propModel})",
-            "${1:propName}: ${2:propType};"
+            "${1:propName} = ModelProp({",
+            "    type: \"${2:propModelType}\",",
+            "});"
         ],
-        "description": "Creates a new ModelProperty."
+        "description": "Creates a new model property."
     }
 }
