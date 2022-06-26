@@ -1,3 +1,9 @@
+/*
+Author: Ing. Luca Gian Scaringella
+GitHub: LucaCode
+Copyright(c) Ing. Luca Gian Scaringella
+ */
+
 import * as vscode from 'vscode';
 import { ProjectType } from './projectDefinitions';
 import { createNewServerProject } from './createNewServerProject';
