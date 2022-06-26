@@ -35,8 +35,8 @@ export async function createNewClientProject() {
 
     const projectType = (await vscode.window.showQuickPick(
         [
-            { label: 'Web', description: 'Creates an web client typescript project with webpack.', target: ClientProjectType.Web},
-            { label: 'Node', description: 'Creates an client typescript project with gulp.', target: ClientProjectType.Node}
+            { label: 'Web', description: 'Creates a web client typescript project with webpack.', target: ClientProjectType.Web},
+            { label: 'Node', description: 'Creates a node.js client typescript project.', target: ClientProjectType.Node}
         ],{
             matchOnDescription: true,
             placeHolder: "Which type of client project do you want to create?",

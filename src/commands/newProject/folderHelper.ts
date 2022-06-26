@@ -43,7 +43,7 @@ export async function processFolderUri(projectName : string) : Promise<[vscode.U
 
     return [uri,emptyFolder ? () => {
         try {
-            fsExtra.emptyDirSync(folderPath)
+            fsExtra.emptyDirSync(folderPath);
         }
         catch(_) {
             vscode.window.showErrorMessage(`Failed to empty existing directory at ${folderPath

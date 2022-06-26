@@ -29,7 +29,6 @@ export async function createNewProject(): Promise<void> {
         case ProjectType.Client:
             await createNewClientProject();
         break;
-        default:
-            throw new AbortedCommandError();
+        default: throw new AbortedCommandError();
     }
 }

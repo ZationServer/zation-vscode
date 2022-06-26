@@ -65,9 +65,8 @@ export async function createNewServerProject() {
         progress.report({ message: "Template files..." });
 
         await templateEngine.templateFiles([
-            `${destFolder}/src/configs/main.config.ts`,
-            `${destFolder}/src/configs/starter.config.ts`,
-            `${destFolder}/src/index.ts`,
+            `${destFolder}/src/configs/server.config.ts`,
+            `${destFolder}/src/configs/app.config.ts`,
             `${destFolder}/package.json`,
             `${destFolder}/Dockerfile`
         ],async (i,length) => {
