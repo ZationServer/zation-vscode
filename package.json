@@ -41,10 +41,6 @@
 				"title": "Zation: New Project"
 			},
 			{
-				"command": "zation.CloneClusterComponent",
-				"title": "Zation: Clone Cluster Component"
-			},
-			{
 				"command": "zation.ShowVersions",
 				"title": "Zation: Show Versions"
 			}
