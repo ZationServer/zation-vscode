@@ -76,5 +76,11 @@
 		"tslint": "^5.20.0",
 		"typescript": "^3.6.4",
 		"vscode-test": "^1.2.2"
+	},
+	"__metadata": {
+		"id": "a9afc72f-0eda-4c0c-9455-b10844e19642",
+		"publisherDisplayName": "LucaCode",
+		"publisherId": "2e30bdd5-d392-486e-8b3c-88cd571e4e1c",
+		"isPreReleaseVersion": false
 	}
 }
