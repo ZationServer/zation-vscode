@@ -3,6 +3,5 @@ node_modules/
 out/
 tmp/
 .DS_Store
-.vscode
 *.vsix
 .vscode-test
