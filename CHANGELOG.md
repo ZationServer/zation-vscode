@@ -61,3 +61,16 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Updated
 - Update to zation bundle version 0.4.0
 - Update templates to support new zation bundle version
+
+## [1.0.0] - 2022-06-28
+
+### Updated
+- Improve license information and readme
+- Update to the new logo
+- Update to zation bundle version 3.0.0-pre-alpha.1
+- Update templates to support new zation bundle version
+- Improve snippets and support the new zation bundle version.
+- Improve commands
+
+### Removed
+- Remove clone cluster component command (due to the new recommended docker images)
