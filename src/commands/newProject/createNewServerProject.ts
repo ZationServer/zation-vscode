@@ -28,7 +28,8 @@ export async function createNewServerProject() {
 
     const description = await askOptionalInput("Enter a description",`The package ${pascalCaseName}...`);
     const author = await askOptionalInput("Enter author");
-    const port = Number.parseInt(await askOptionalInput("Enter a port","3000"))?.toString();
+    const portInput = Number.parseInt(await askOptionalInput("Enter a port","3000"));
+    const port = (Number.isInteger(portInput) && portInput > 0 ? portInput : 3000).toString();
     const git = await askOptionalInput("Enter git repository");
 
     const templateEngine = new TemplateEngine({
@@ -46,7 +47,7 @@ export async function createNewServerProject() {
         title: `Create Project: ${name} `,
         cancellable: false
     },async (progress) => {
-        await new Promise<void>(r => setInterval(() => r(),50));
+        await new Promise<void>(r => setTimeout(() => r(),50));
         progress.report({message: "Prepare folder..." });
         preprocessFolder();
         fsExtra.ensureDirSync(destFolder);
@@ -97,7 +98,7 @@ export async function createNewServerProject() {
     vscode.window.showInformationMessage("You can start the server with the command: 'npm start'.");
     vscode.window.showInformationMessage("Open project in 4 seconds...");
 
-    await new Promise<void>(r => setInterval(() => r(),4000));
+    await new Promise<void>(r => setTimeout(() => r(),4000));
 
     openProject(destUri);
 }

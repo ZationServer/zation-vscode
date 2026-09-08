@@ -56,7 +56,8 @@ export async function createNewClientProject() {
     const git = await askOptionalInput("Enter git repository");
 
     const serverHost = await askOptionalInput("Enter the server host","localhost");
-    const serverPort = Number.parseInt(await askOptionalInput("Enter the server port","3000"))?.toString();
+    const serverPortInput = Number.parseInt(await askOptionalInput("Enter the server port","3000"));
+    const serverPort = (Number.isInteger(serverPortInput) && serverPortInput > 0 ? serverPortInput : 3000).toString();
 
     const templateEngine = new TemplateEngine({
         name,
@@ -74,7 +75,7 @@ export async function createNewClientProject() {
         title: `Create Project: ${name} `,
         cancellable: false
     },async (progress) => {
-        await new Promise<void>(r => setInterval(() => r(),50));
+        await new Promise<void>(r => setTimeout(() => r(),50));
         progress.report({message: "Prepare folder..." });
         preprocessFolder();
         fsExtra.ensureDirSync(destFolder);
@@ -123,7 +124,7 @@ export async function createNewClientProject() {
     vscode.window.showInformationMessage("You can start the client with the command: 'npm start'.");
     vscode.window.showInformationMessage("Open project in 4 seconds...");
 
-    await new Promise<void>(r => setInterval(() => r(),4000));
+    await new Promise<void>(r => setTimeout(() => r(),4000));
 
     openProject(destUri);
 

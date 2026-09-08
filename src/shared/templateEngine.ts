@@ -22,15 +22,15 @@ export default class TemplateEngine {
             let value = this.map[key] || "";
             if(type !== undefined){
                 switch((type as string).toLowerCase()){
-                    case "camelCase":
+                    case "camelcase":
                     case "cc":
                         value = toCamelCase(value);
                         break;
-                    case "kebabCase":
+                    case "kebabcase":
                     case "kc":
                         value = toKebabCase(value);
                         break;
-                    case "pascalCase":
+                    case "pascalcase":
                     case "pc":
                         value = toPascalCase(value);
                         break;
