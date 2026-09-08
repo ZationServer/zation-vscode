@@ -17,7 +17,7 @@ A Zation server is built on different component types: Controllers, Receivers, C
 
 ## Learn More 📚
 
-- [Read the documentation](https://github.com/ZationServer/zation-documentation)
+- [Read the documentation](https://zationserver.github.io/zation-documentation/)
 
 > If you really don't know how you can implement something after reading the documentation. Try to look in the documentation of the Zation API. If this not helps, feel free to contact me.
 
