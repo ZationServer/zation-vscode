@@ -1,10 +1,10 @@
 ## Introduction
 
-This [VS Code](https://code.visualstudio.com/) extension helps to create [Zation](https://zation.de/) projects and clone cluster components easy and fast.
+This [VS Code](https://code.visualstudio.com/) extension helps to create [Zation](https://github.com/ZationServer) projects and clone cluster components easy and fast.
 
 ![Zation new project example](https://raw.githubusercontent.com/ZationServer/zation-vscode/master/assets/newProject.gif)
 
-Additionally, it adds snippets that will help to develop a [Zation](https://zation.de/) application fast and efficiently.
+Additionally, it adds snippets that will help to develop a [Zation](https://github.com/ZationServer) application fast and efficiently.
 
 ![Zation new project example](https://raw.githubusercontent.com/ZationServer/zation-vscode/master/assets/objectModelSnippet.gif)
 
@@ -17,7 +17,7 @@ A Zation server is built on different component types: Controllers, Receivers, C
 
 ## Learn More 📚
 
-- [Read the documentation @docs.zationjs.org](https://docs.zationjs.org)
+- [Read the documentation](https://github.com/ZationServer/zation-documentation)
 
 > If you really don't know how you can implement something after reading the documentation. Try to look in the documentation of the Zation API. If this not helps, feel free to contact me.
 
